@@ -1,9 +1,22 @@
 import chalk from "chalk";
+import figlet from "figlet";
+import inquirer from "inquirer";
+import Dice from "./classes/Dice.js";
+import Game from "./classes/Game.js";
+import checkup from "./utils/checkup.js";
 
-let dices = process.argv.slice(2);
+const main = async () => {
+  const game = new Game();
+  let dices = process.argv.slice(2);
+  let user = {
+    name: "",
+    score: 0,
+  };
 
-if (dices.length < 3) {
-  console.log(
-    chalk.red.bold("Error: User specified only two dice or no dice at all")
-  );
-} else console.log(dices);
+  checkup(dices);
+
+  await game.greeting(user);
+  await game.startMenu();
+};
+
+main();

@@ -1,4 +1,4 @@
-class Dice {
+export default class Dice {
   constructor(faces) {
     this.faces = faces;
   }
@@ -7,5 +7,3 @@ class Dice {
     return Math;
   }
 }
-
-module.exports = Dice;

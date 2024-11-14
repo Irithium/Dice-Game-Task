@@ -1,84 +1,70 @@
-# Notes for Generalized Dice Game Task
+# Dice Game Instructions
 
-## Task Summary
+## Overview
 
-I will create a console script that implements a generalized dice game using JavaScript and Node.js. The program will accept command line parameters for multiple dice configurations and allow the user to play against the computer, ensuring fair play through secure random generation and HMAC.
+Welcome to the **Generalized Dice Game**! In this game, you will compete against the computer by selecting different sets of dice, rolling them, and comparing the results to see who wins. The game is designed to be fair and transparent, allowing you to verify that the computer is not cheating.
 
-### Key Requirements
+## How to Start the Game
 
-1. **Input Handling**: I need to accept three or more strings as command line parameters, each containing 6 comma-separated integers representing the dice values. Example:
+1. **Launch the Game**:
+   You will need to run the program from the command line with the appropriate parameters. The parameters consist of three or more strings, each containing six comma-separated integers that represent the faces of the dice.
 
+   **Example command**:
+
+   ```bash
+   node index.js 2,2,4,4,9,9 6,8,1,1,8,6 7,5,3,7,5,3
    ```
-    node game.js 2,2,4,4,9,9 6,8,1,1,8,6 7,5,3,7,5,3
+
+## Game Rules
+
+1. **Input Validation**:
+   If you provide incorrect arguments (e.g., fewer than three dice, non-integer values, or invalid configurations), the game will display an error message explaining the issue and how to format your input correctly.
+2. **Determine Who Goes First**:
+
+   - The game will randomly select either you or the computer to make the first move. This selection is fair and you will be able to verify its fairness through a displayed HMAC value.
+
+3. **Selecting Dice**:
+
+   - After determining who goes first, the computer will select one of its dice sets. You will then be presented with a menu of the available dice sets to choose from for your turn.
+
+4. **Rolling the Dice**:
+
+   - Once you've selected your dice, both you and the computer will roll your respective dice. You will be prompted to choose a number to add to the computer's roll, and the game will perform a modulo operation to determine the final results.
+   - The computer's roll and HMAC value will be shown to ensure transparency.
+
+5. **Winning the Game**:
+   - The player with the higher roll wins the round! The results of the game will be displayed at the end, indicating whether you won or lost.
+
+## Help Option
+
+- You can access help at any time by selecting the `?` option in the menu. This will present you with a table displaying the probabilities of winning for each pair of dice, which will help you strategize your selections.
+
+## Important Notes
+
+- The program utilizes secure methods for generating random values to ensure fairness in the game.
+- Every time the computer rolls, it generates a cryptographically secure random key, calculates an HMAC, and presents the HMAC to you before you make your roll.
+- You can verify the fairness of the game's random value generation by checking the displayed HMAC.
+
+## Example Game Flow
+
+Here’s a brief overview of a typical game session:
+
+1. Launch the game with the command:
+
+   ```bash
+   node index.js 2,2,4,4,9,9 6,8,1,1,8,6 7,5,3,7,5,3
    ```
 
-2. **Error Reporting**:
+2. The game determines who goes first and displays the HMAC showing the fairness of the selection.
 
-   - I must display a clear error message if the input is incorrect, explaining the issue and providing an example of valid input.
+3. You select your dice from the available options.
 
-3. **Gameplay**:
+4. The computer selects its dice and generates a random number with a displayed HMAC.
 
-   - Both the user and the computer need to select different dice, roll them, and whoever rolls higher wins.
-   - The first move is determined fairly by generating a provable random number.
+5. You choose a number from 0 to the maximum of your dice (using modulo) to add to the computer's roll.
 
-4. **Random Number Generation**:
+6. The game shows the results of both rolls, displaying both your results and the computer's, along with the final outcome (who wins).
 
-   - I must use a cryptographically secure method to generate random numbers. This includes:
-     - Generating a secure random key (at least 256 bits long).
-     - Generating a uniformly distributed random integer within the range of the dice.
-     - Calculating and displaying HMAC based on the generated integer and the secret key.
+## Conclusion
 
-5. **User Interaction**:
-
-   - Users will select options via a command line interface (CLI) menu.
-
-6. **Help Option**:
-
-   - The user can view a help table that presents the probabilities of winning for each pair of dice, which must be generated in a separate class.
-
-7. **Code Structure**:
-
-   - The application should consist of at least 6-9 classes, such as:
-     - Dice configuration parsing.
-     - Fair random number generation.
-     - HMAC calculation.
-     - Probability calculation.
-     - User interface handling.
-     - Dice abstraction.
-
-8. **Submission**: To submit the task, I need to send an email to **p.lebedev@itransition.com** with:
-   - A link to a public video demonstrating various game scenarios and error cases.
-   - A link to the public GitHub repository containing the code.
-
-### Example Output
-
-Here is an example of what the game session should look like:
-
-```
-> node game.js 2,2,4,4,9,9 6,8,1,1,8,6 7,5,3,7,5,3
-- Lets determine who makes the first move.
-- I selected a random value in the range 0..1 (HMAC=C8E79615E637E6B14DDACA2309069A76D0882A4DD8102D9DEAD3FD6AC4AE289A).
-- Try to guess my selection.
-- 0 - 0
-- 1 - 1
-- X - exit
-- ? - help
-- Your selection: 0
-- My selection: 1 (KEY=BD9BE48334BB9C5EC263953DA54727F707E95544739FCE7359C267E734E380A2).
-- I make the first move and choose the [6,8,1,1,8,6] dice.
-- Choose your dice:
-- 0 - 2,2,4,4,9,9
-- 1 - 7,5,3,7,5,3
-- X - exit
-- ? - help
-- Your selection: 0
-- You choose the [2,2,4,4,9,9] dice.
-```
-
-### Additional Notes
-
-- It’s important to use core class libraries and relevant third-party libraries (especially for table generation and HMAC handling).
-- I need to strictly follow the order of operations for fair play verification.
-- Every decision made by the program (including showing keys and results) is critical for gaining user trust in the game's fairness.
-
-This task is a great opportunity to deepen my understanding of hash functions, secure coding practices, object-oriented programming, and the importance of user engagement through a command line interface.
+The **Generalized Dice Game** is an engaging way to test your luck against a computer while ensuring fairness and transparency throughout the play. Follow these instructions to start playing and enjoy the experience! If you have any questions or concerns, feel free to reference the help option at any time during the game. Good luck!
