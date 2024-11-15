@@ -7,7 +7,7 @@ const checkup = (dices) => {
   if (dices.length < 3) {
     console.log(
       chalk.red.bold(
-        "Error: User specified less than three dice or no dice at all. Please make sure you input at least three dices" +
+        "Error: User specified less than three dice or no dice at all. Please make sure you input at least three dice" +
           chalk.yellow(" Example: 2,2,4,4,9,9 6,8,1,1,8,6 7,5,3,7,5,3")
       )
     );
@@ -21,7 +21,7 @@ const checkup = (dices) => {
     if (faces.length !== 6) {
       console.log(
         chalk.red.bold(
-          `Error: It appears that one of the dice you have entered do not have 6 faces. Dice number: ${diceCounter}` +
+          `Error: It appears that one of the dice you have entered do not have 6 faces. Die number: ${diceCounter}` +
             chalk.yellow(" Example: 2,2,4,4,9,9")
         )
       );
@@ -32,7 +32,7 @@ const checkup = (dices) => {
       if (!integerRegex.test(face.trim())) {
         console.log(
           chalk.red.bold(
-            `Error: Please ensure that all faces of the dice are represented by whole numbers. Dice number: ${diceCounter}` +
+            `Error: Please ensure that all faces of the dice are represented by whole numbers. Die number: ${diceCounter}` +
               chalk.yellow(" Example: 7,5,3,7,5,3")
           )
         );
