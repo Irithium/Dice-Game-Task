@@ -26,7 +26,7 @@ export default class Game {
             name: "user",
             message: "What is your name?",
             validate: (input) => {
-              if (input.trim() === "") {
+              if (!input.trim()) {
                 return "Please, write a name!";
               }
               return true;
@@ -101,7 +101,6 @@ export default class Game {
           .then(async (option) => {
             switch (option.selected) {
               case "start": {
-                
               }
               case "close": {
                 console.log(chalk.white.bold("  See you next time!"));

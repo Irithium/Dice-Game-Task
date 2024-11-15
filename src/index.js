@@ -4,22 +4,29 @@ import inquirer from "inquirer";
 import Dice from "./classes/Dice.js";
 import Game from "./classes/Game.js";
 import checkup from "./utils/checkup.js";
-import RandomNumberGenerator from "./classes/RandomNumberGenerator.js";
+import RandomGenerator from "./classes/RandomGenerator.js";
 
 const main = async () => {
   const game = new Game();
-  const randomGenerator = new RandomNumberGenerator();
-  let dices = process.argv.slice(2);
+  const generator = new RandomGenerator();
+  // generator.key = await generator.randomKey();
+  generator.number = await generator.getRandomInt(0, 1);
+  let dice = process.argv.slice(2);
   let user = {
     name: "",
     score: 0,
   };
 
-  checkup(dices);
+  checkup(dice);
+  generator.randomKey();
+  generator.getRandomInt(0, 1);
 
-  // await game.greeting(user);
+  console.log(generator.key);
+  console.log(generator.number);
+
+  console.log(generator.calculateHMAC);
+  await game.greeting(user);
   // await game.startMenu();
-  await randomGenerator.randomKey();
 };
 
 main();
