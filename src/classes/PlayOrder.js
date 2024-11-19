@@ -159,7 +159,7 @@ export default class PlayOrder {
 
         const selector = await generator.getRandomInt(
           0,
-          diceConfig.dice.length
+          diceConfig.dice.length - 1
         );
         this.computerDice = diceConfig.dice[selector];
         diceConfig.dice = diceConfig.dice.filter(
@@ -174,7 +174,7 @@ export default class PlayOrder {
       } else {
         const selector = await generator.getRandomInt(
           0,
-          diceConfig.dice.length
+          diceConfig.dice.length - 1
         );
         this.computerDice = diceConfig.dice[selector];
         diceConfig.dice = diceConfig.dice.filter(
@@ -198,8 +198,6 @@ export default class PlayOrder {
           const diceNames = await diceConfig.dice.map((die) => die.join(","));
           const calculator = new ProbabilityCalculator(diceConfig.dice);
           const probabilities = await calculator.calculateWinProbabilities();
-          console.log(calculator.diceArrays);
-          console.log(probabilities);
 
           const probabilityTable = await new ProbabilityTable(
             probabilities,
