@@ -1,20 +1,15 @@
 import Game from "./classes/Game.js";
-
-import FairPlay from "./classes/FairPlay.js";
-import RandomGenerator from "./classes/RandomGenerator.js";
+import DiceConfig from "./classes/DiceConfig.js";
 
 const main = async () => {
+  const diceConfig = new DiceConfig();
   const game = new Game();
-  const generator = new RandomGenerator();
-  const fairPlay = new FairPlay();
-  let dice = process.argv.slice(2);
-  let user = {
-    name: "",
-    score: 0,
-  };
 
-  // await game.greeting(user);
-  // await game.startMenu();
+  diceConfig.dieParse(process.argv.slice(2));
+  diceConfig.validateInput();
+
+  await game.greeting();
+  await game.menu();
 };
 
 main();

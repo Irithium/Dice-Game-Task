@@ -1,4 +1,6 @@
 import crypto from "crypto";
+import { Random } from "random-js";
+const random = new Random();
 
 export default class RandomGenerator {
   constructor() {}
@@ -10,10 +12,7 @@ export default class RandomGenerator {
   }
 
   getRandomInt(min, max) {
-    const randomBuffer = crypto.randomBytes(4);
-    const randomInt = randomBuffer.readUInt32BE(0);
-
-    return Math.round((randomInt / (0xffffffff + 1)) * (max - min)) + min;
+    return random.integer(min, max);
   }
 
   calculateHMAC(key, message) {
